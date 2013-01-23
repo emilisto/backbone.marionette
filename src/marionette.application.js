@@ -69,15 +69,9 @@ _.extend(Marionette.Application.prototype, Backbone.Events, {
   },
 
   // Create a module, attached to the application
-  module: function(moduleNames, moduleDefinition){
-    // slice the args, and add this application object as the
-    // first argument of the array
-    var args = slice.call(arguments);
-    args.unshift(this);
-
-    // see the Marionette.Module object for more information
-    return Marionette.Module.create.apply(Marionette.Module, args);
-  }
+  module: function(moduleNames, moduleDefinition) {
+      return Marionette.Module.prototype.module.call(this, moduleNames, moduleDefinition);
+    }
 });
 
 // Copy the `extend` function used by Backbone's classes

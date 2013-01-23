@@ -86,6 +86,17 @@ _.extend(Marionette.Module.prototype, Backbone.Events, {
     Marionette.triggerMethod.call(this, "stop");
   },
 
+  // Create a module, attached to the application
+  module: function(moduleNames, moduleDefinition){
+    // slice the args, and add this application object as the
+    // first argument of the array
+    var args = slice.call(arguments);
+    args.unshift(this);
+
+    // see the Marionette.Module object for more information
+    return Marionette.Module.create.apply(Marionette.Module, args);
+  },
+
   // Configure the module with a definition function and any custom args
   // that are to be passed in to the definition function
   addDefinition: function(moduleDefinition, customArgs){
